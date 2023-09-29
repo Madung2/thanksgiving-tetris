@@ -38,5 +38,6 @@ https://velog.io/@tasha_han_1234/%ED%95%AD%ED%95%B4%ED%94%8C%EB%9F%AC%EC%8A%A4-%
 * z자형: 4개의 작은 블록이 z자형으로 나열된 모양
 
 
-![image](https://github.com/Madung2/thanksgiving-tetris/assets/104334219/4131434a-29f1-4006-98e5-0545b621f938)
+![image](https://github.com/Madung2/thanksgiving-tetris/assets/104334219/a19bf9d6-9fb8-401e-8acd-91d5fb3f4700)
+
 
