@@ -2,6 +2,8 @@
 
 추석용 프로젝트: 테트리스를 만들어보자
 ***
+### 게임 링크
+https://tashahan91.itch.io/thanksgiving-tetris
 
 ### 점수
 * 아래 방향키로 빨리 내리기 했을 때 : 1점
