@@ -8,15 +8,12 @@ class Grid:
         self.cell_size = 30
         self.grid = [[0] * self.num_cols for _ in range(self.num_rows)]
         self.colors = Colors.get_cell_colors()
-
-    # def print_grid(self):
-    #     for row in range(self.num_rows):
-    #         for col in range(self.num_cols):
-    #             print(self.grid[row][col], end = " ")
-    #         print()
     
     def is_inside(self, row, col):
         return 0 <= row < self.num_rows and 0 <= col < self.num_cols
+    
+    def is_empty(self, row, column):
+        return True if self.grid[row][column] == 0 else False
 
 
     def draw(self,screen):
