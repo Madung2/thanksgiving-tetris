@@ -12,6 +12,8 @@ https://tashahan91.itch.io/thanksgiving-tetris
 ### 회고 블로그
 https://velog.io/@tasha_han_1234/%ED%95%AD%ED%95%B4%ED%94%8C%EB%9F%AC%EC%8A%A4-%EC%BD%94%EC%9C%A1%EB%8C%80-%ED%9A%8C%EA%B3%A0-%ED%85%8C%ED%8A%B8%EB%A6%AC%EC%8A%A4%EC%99%80-%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%98-%EA%B0%80%EB%8A%A5%EC%84%B1
 
+![image](https://github.com/Madung2/thanksgiving-tetris/assets/104334219/a19bf9d6-9fb8-401e-8acd-91d5fb3f4700)
+
 ### 점수
 * 아래 방향키로 빨리 내리기 했을 때 : 1점
 * 1줄 클리어 했을 때: 100점
@@ -38,6 +40,15 @@ https://velog.io/@tasha_han_1234/%ED%95%AD%ED%95%B4%ED%94%8C%EB%9F%AC%EC%8A%A4-%
 * z자형: 4개의 작은 블록이 z자형으로 나열된 모양
 
 
-![image](https://github.com/Madung2/thanksgiving-tetris/assets/104334219/a19bf9d6-9fb8-401e-8acd-91d5fb3f4700)
-
-
+### 기능
+1) 그리드
+2) 블록
+3)블록 이동
+4)블록 그리드 밖으로 이동 감지
+5) 회전
+6) 블록 변경 및 이전 블록 고정
+7) 한줄 클리어
+8) 타이머
+9) 완성한 라인 카운드
+10) 점수
+11) 게임 시작 및 게임오버
