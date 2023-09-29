@@ -12,8 +12,8 @@ class Game:
         self.next_block = self.get_random_block()
         self.game_over = False
         self.score = 0
-        pygame.mixer.music.load('tetris/tetris/Sounds/BGM_Tetris.mp3')
-        pygame.mixer.music.play(-1)
+        #pygame.mixer.music.load('tetris/tetris/Sounds/BGM_Tetris.mp3')
+        #pygame.mixer.music.play(-1)
 
     def update_score(self, lines_cleared, move_down_points):
         """점수를 업데이트하는 함수
