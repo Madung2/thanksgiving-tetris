@@ -1,3 +1,4 @@
+import time
 import asyncio
 import pygame
 import sys
@@ -6,7 +7,11 @@ from colors import Colors
 
 pygame.init()
 
-####### UI정의 ########
+####### 게임 스크린 정의 ########
+screen = pygame.display.set_mode((500, 620)) # width, height
+pygame.display.set_caption("Tetris")
+
+####### 기타 UI정의 ########
 title_font = pygame.font.Font(None, 40)
 score_surface = title_font.render("Score", True, Colors.white)
 next_surface = title_font.render("Next", True, Colors.white)
@@ -16,10 +21,6 @@ press_space_surface = title_font.render("Press Space", True, Colors.white)
 score_rect = pygame.Rect(320, 55, 170, 50)
 next_rect = pygame.Rect(320, 215, 170, 180)
 
-####### 게임 스크린 정의 ########
-screen = pygame.display.set_mode((500, 620)) # width, height
-pygame.display.set_caption("Tetris")
-
 ####### 게임 루프 정의 ########
 clock = pygame.time.Clock()
 game = Game()
@@ -27,13 +28,14 @@ GAME_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(GAME_UPDATE, 300)
 
 
-
 ##게임 시작 기본 상태
 game.game_over = True
+start_time = None # 게임 시작 초기화
 game.grid.reset()
 
 async def main():
     while True:
+        
         ######### 이벤트 처리 #########
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -67,10 +69,11 @@ async def main():
 
         ######### 화면 그리기 #########
         score_value_surface = title_font.render(str(game.score), True, Colors.white)
-
+        clock_value_surface = title_font.render(game.elapsed_time, True, Colors.white)
+        line_value_surface = title_font.render(f'lines:{game.line_cleared}', True, Colors.white)
         screen.fill(Colors.dark_blue)
         screen.blit(score_surface, (365, 20, 50, 50))
-        screen.blit(next_surface, (370, 170, 50, 50))
+        screen.blit(next_surface, (370, 400, 50, 50))
         if game.game_over:
             screen.blit(start_surface, (370, 450, 50, 50))
             screen.blit(press_space_surface, (325, 500, 50, 50))
@@ -78,10 +81,15 @@ async def main():
         pygame.draw.rect(screen, Colors.light_blue, score_rect, 5)
         screen.blit(score_value_surface, score_value_surface.get_rect(
             centerx=score_rect.centerx, centery=score_rect.centery))
+        screen.blit(clock_value_surface, clock_value_surface.get_rect(
+            centerx=score_rect.centerx, centery=score_rect.centery + 50))
+        screen.blit(line_value_surface, line_value_surface.get_rect(
+            centerx=score_rect.centerx, centery=score_rect.centery + 100))
         pygame.draw.rect(screen, Colors.light_blue, next_rect, 5)
         game.draw(screen)
 
         ######### 게임 루프 #########
+        game.get_elapsed_time()
         pygame.display.update()
         await asyncio.sleep(0)
         clock.tick(60)  # 60 frames per sec

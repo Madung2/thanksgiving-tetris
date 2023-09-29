@@ -2,6 +2,7 @@ import pygame
 from grid import Grid
 from blocks import *
 import random
+import time
 
 
 class Game:
@@ -12,6 +13,10 @@ class Game:
         self.next_block = self.get_random_block()
         self.game_over = False
         self.score = 0
+        self.start_time = None
+        self.elapsed_time = "00:00"
+        self.line_cleared = 0
+        
         #pygame.mixer.music.load('tetris/tetris/Sounds/BGM_Tetris.mp3')
         #pygame.mixer.music.play(-1)
 
@@ -31,6 +36,13 @@ class Game:
         elif lines_cleared == 4:
             self.score += 800
         self.score += move_down_points
+
+    def get_elapsed_time(self):
+        if self.start_time is not None and not self.game_over:
+            elapsed_seconds = int(time.time() - self.start_time)
+            minutes = elapsed_seconds // 60
+            seconds = elapsed_seconds % 60
+            self.elapsed_time =  f"{minutes:02}:{seconds:02}"
 
     def get_random_block(self):
         """랜덤으로 블록을 생성하는 함수, 중복방지를 위해 사용된 블록은 리스트에서 제거한다. 블록이 없으면 새 블록 세트를 추가한다
@@ -63,7 +75,7 @@ class Game:
             self.lock_block()
             
     def lock_block(self):
-        """블록을 고정시키는 함수"""
+        """블록이 바닥에 닿거나 새 브록 생성될때 활성화되는 함수"""
         tiles = self.current_block.get_cell_positions()
         if not self.block_inside():
             raise Exception("블록이 그리드 밖으로 나갔습니다")
@@ -72,8 +84,9 @@ class Game:
             self.grid.grid[pos.row][pos.col] = self.current_block.id
         self.current_block = self.next_block
         self.next_block = self.get_random_block()
-        rows_cleared = self.grid.clear_full_rows()
-        self.update_score(rows_cleared, 0)
+        self.rows_cleared = self.grid.clear_full_rows()
+        self.line_cleared += self.rows_cleared
+        self.update_score(self.rows_cleared, 0)
         if not self.block_fits():
             self.game_over = True
 
@@ -83,6 +96,7 @@ class Game:
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
         self.score = 0
+        self.start_time = time.time()
 
     def block_fits(self):
         tiles = self.current_block.get_cell_positions()
