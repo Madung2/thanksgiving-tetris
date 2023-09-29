@@ -52,3 +52,23 @@ https://velog.io/@tasha_han_1234/%ED%95%AD%ED%95%B4%ED%94%8C%EB%9F%AC%EC%8A%A4-%
 9) 완성한 라인 카운드
 10) 점수
 11) 게임 시작 및 게임오버
+
+
+### 배포
+**로컬테스트**
+* async await을 사용해서 게임 루프에 해당하는 main function을 감싸준다
+* 게임 루프 하단에 `await asyncio.sleep(0)`를 추가한다. 자세한 설명은 pygbag 깃허브 링크를 참조
+* `pip install pygbag` 를 한다
+* `pygbag tetris` 명령어를 입력한다. 여기서 tetris는 게임이 있는 디렉토리명이다
+* 그럼 /build/web 이라는 디렉토리가 생기는데 이 안에 tetris.apk파일과 index.html favicon 이 생성될 것이다.
+* 여기서 index.html은 게임과 연동된 웹페이지 정보이고, tetris.apk는 작성한 pygame정보가 들어있다.
+* vscode 라이브서버를 사용해서 이 web 디렉토리에 들어가서 서버를 켜보자. 정상적으로 게임이 브라우저에서 켜진다면 apk와 index.html이 문제 없이 구동되는 것이다.
+
+**서버 실행**
+* 사실 이건 클라우드 프론트로 배포해도 아무 문제 없지만 나는 평소 사용하는 EC2서버를 사용했다.
+* EC2 서버에 ssh를 사용해서 접근한 뒤에 `sudo apt install nginx` 로 엔지닉스를 설치한다
+* `sudo systemctl start nginx` 로 엔지닉스를 시작한다
+* git clone으로 web에 해당하는 파일을 서버 안에 클론해둔다 (윈도우에서 SCP사용하기 귀찮아서..)
+* nginx는 `/var/www/html` 이라는 폴더 안에 있는 것을 실행한다. 따라서 web파일 안의 컨텐츠를 mv 명령어를 사용해서 해당 디렉토리 안에 넣어둔다.
+* 서버의 80번 포트가 열려있는지 다시한번 확인한다
+*  끝!!! :-)
