@@ -3,6 +3,10 @@
 추석용 프로젝트: 테트리스를 만들어보자
 ***
 ### 게임 링크
+EC2 배포 링크:
+http://3.39.216.163/
+
+이치 링크: 
 https://tashahan91.itch.io/thanksgiving-tetris
 
 ### 점수
