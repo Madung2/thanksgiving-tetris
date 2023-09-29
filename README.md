@@ -38,5 +38,4 @@ https://velog.io/@tasha_han_1234/%ED%95%AD%ED%95%B4%ED%94%8C%EB%9F%AC%EC%8A%A4-%
 * z자형: 4개의 작은 블록이 z자형으로 나열된 모양
 
 
-
-![Alt text](image.png)
+https://velog.velcdn.com/images/tasha_han_1234/post/37e4315d-5916-4a85-9aa9-ef52d783c782/image.png
