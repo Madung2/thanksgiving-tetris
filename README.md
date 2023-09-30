@@ -41,3 +41,7 @@ https://velog.io/@tasha_han_1234/%ED%95%AD%ED%95%B4%ED%94%8C%EB%9F%AC%EC%8A%A4-%
 ![image](https://github.com/Madung2/thanksgiving-tetris/assets/104334219/a19bf9d6-9fb8-401e-8acd-91d5fb3f4700)
 
 
+## nginx 업데이트를 위한 명령어
+sudo mv /home/ubuntu/tetris/tetris/build/web/* /var/www/html/
+
+

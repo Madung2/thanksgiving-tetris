@@ -1,4 +1,4 @@
-import time
+
 import asyncio
 import pygame
 import sys
@@ -16,7 +16,9 @@ title_font = pygame.font.Font(None, 40)
 score_surface = title_font.render("Score", True, Colors.white)
 next_surface = title_font.render("Next", True, Colors.white)
 start_surface = title_font.render("Start", True, Colors.white)
+rotate_surface = title_font.render("Rotate", True, Colors.white)
 start_rect = pygame.Rect(320, 440, 170, 50)
+rotate_rect = pygame.Rect(320, 500, 100, 100)
 press_space_surface = title_font.render("Press Space", True, Colors.white)
 score_rect = pygame.Rect(320, 55, 170, 50)
 next_rect = pygame.Rect(320, 215, 170, 180)
@@ -63,9 +65,15 @@ async def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
-                if start_rect.collidepoint(mouse_pos):
+                if mouse_pos[0] < 150 and (not game.game_over): # 화면 왼쪽 반을 클릭
+                    game.move_left()
+                elif 150< mouse_pos[0]< 310 and (not game.game_over):
+                    game.move_right()
+                elif start_rect.collidepoint(mouse_pos):
                     game.game_over = False
                     game.reset()
+                elif rotate_rect.collidepoint(mouse_pos):
+                    game.rotate()
 
         ######### 화면 그리기 #########
         score_value_surface = title_font.render(str(game.score), True, Colors.white)
@@ -78,6 +86,9 @@ async def main():
             screen.blit(start_surface, (370, 450, 50, 50))
             screen.blit(press_space_surface, (325, 500, 50, 50))
             pygame.draw.rect(screen, Colors.white, start_rect, 5)
+        elif not game.game_over:
+            screen.blit(rotate_surface, (326, 535, 50, 50))
+            pygame.draw.rect(screen, Colors.white, rotate_rect, 5)
         pygame.draw.rect(screen, Colors.light_blue, score_rect, 5)
         screen.blit(score_value_surface, score_value_surface.get_rect(
             centerx=score_rect.centerx, centery=score_rect.centery))
